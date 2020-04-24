@@ -48,6 +48,10 @@ void insertIntoGEL(event *created_event){
 	return;
 }
 
+void processEvent(gel list){
+	return;
+}
+
 int main(int argc, char *argv[]) {
 
 
@@ -68,10 +72,10 @@ int main(int argc, char *argv[]) {
 	for(int i = 0; i < 100000; i++)
   {
 		if(list.front().type == 1){
-
+			processEvent(list);
 		} else {
 
-			
+
 		}
 
 
