@@ -32,7 +32,7 @@ struct gel{
 typedef struct gel gel;
 
 void insertIntoGEL(event *created_event){
-
+	//working on still
 	if (GEL->size() == 0){
 		GEL->push_front(created_event);
 		return;
@@ -48,7 +48,8 @@ void insertIntoGEL(event *created_event){
 	return;
 }
 
-void processEvent(gel list){
+void processEvent(gel& list){
+	//working on still
 	return;
 }
 
