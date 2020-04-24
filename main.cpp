@@ -5,6 +5,8 @@
 #include <queue>
 #include <unistd.h>
 #include <vector>
+#include <queue>
+
 
 //global variables
 double length;
@@ -14,7 +16,7 @@ double arrival_rate;
 double arrival_time;
 
 //data structures
-struct event{
+struct event{ //node of double linked list
 	double event_time;
 	double type;
 	struct event *next_event;
@@ -22,6 +24,11 @@ struct event{
 };
 
 typedef struct event event;
+
+void insertIntoGEL(Event *created_event, ){
+
+	return;
+}
 
 int main(int argc, char *argv[]) {
 
@@ -40,7 +47,7 @@ int main(int argc, char *argv[]) {
 	for(int i = 0; i < 100000; i++)
   {
 		arrival_time = current_time + ;
-		
+		insertIntoGEL(first_event, );
 		//get first event from GEL
 
   }
