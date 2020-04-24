@@ -31,7 +31,7 @@ struct gel{
 
 typedef struct gel gel;
 
-void insertIntoGEL(std::list<event *> GEL, event *created_event){
+void insertIntoGEL(event *created_event){
 
 	if (GEL->size() == 0){
 		GEL->push_front(created_event);
@@ -57,18 +57,21 @@ int main(int argc, char *argv[]) {
 	arrival_time = 0;
 	service_rate = 0;
 	arrival_rate = 0;
-	std::list<event *> GEL;
+	gel list;
 
 	event first_event;
 	first_event.type = 0;
 	first_event.event_time = current_time + ;
 	//^^need to add a randomly generated inter-arrival time to the current time, not sure how
-	insertIntoGEL(&GEL, first_event);
+	insertIntoGEL(first_event);
 
 	for(int i = 0; i < 100000; i++)
   {
-		if(){
+		if(list.front().type == 1){
 
+		} else {
+
+			
 		}
 
 
