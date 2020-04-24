@@ -16,14 +16,20 @@ double arrival_rate;
 double arrival_time;
 
 //data structures
-struct event{ //node of double linked list
+struct event{
 	double event_time;
-	double type;
+	double type;			//we can have 0 = arrival & 1 = departure
 	struct event *next_event;
 	struct event *prev_event;
 };
 
 typedef struct event event;
+
+struct gel{
+	list<event> gel;
+};
+
+typedef struct gel gel;
 
 void insertIntoGEL(std::list<event *> GEL, event *created_event){
 
@@ -54,14 +60,17 @@ int main(int argc, char *argv[]) {
 	std::list<event *> GEL;
 
 	event first_event;
+	first_event.type = 0;
+	first_event.event_time = current_time + ;
+	//^^need to add a randomly generated inter-arrival time to the current time, not sure how
+	insertIntoGEL(&GEL, first_event);
 
 	for(int i = 0; i < 100000; i++)
   {
-		arrival_time = current_time + ;
-		//^^ need to add a randomly generated inter-arrival time to the current time, not sure how
+		if(){
 
-		insertIntoGEL(&GEL, first_event);
-		//get first event from GEL
+		}
+
 
   }
 
