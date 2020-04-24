@@ -44,7 +44,6 @@ void insertIntoGEL(std::list<event *> GEL, event *created_event){
 
 int main(int argc, char *argv[]) {
 
-	srand48(time(0)); //randomly generated arrival time
 
 	//initialization
 	length = 0;
@@ -60,7 +59,7 @@ int main(int argc, char *argv[]) {
   {
 		arrival_time = current_time + ;
 		//^^ need to add a randomly generated inter-arrival time to the current time, not sure how
-		
+
 		insertIntoGEL(&GEL, first_event);
 		//get first event from GEL
 
