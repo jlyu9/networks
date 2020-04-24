@@ -25,7 +25,19 @@ struct event{ //node of double linked list
 
 typedef struct event event;
 
-void insertIntoGEL(Event *created_event, ){
+void insertIntoGEL(std::list<event *> GEL, event *created_event){
+
+	if (GEL->size() == 0){
+		GEL->push_front(created_event);
+		return;
+	} else {
+
+		std::list<event *>::Check check;
+		for (check = GEL->being(), check != GEL->end(), check++){
+			
+		}
+		return;
+	}
 
 	return;
 }
@@ -40,14 +52,14 @@ int main(int argc, char *argv[]) {
 	arrival_time = 0;
 	service_rate = 0;
 	arrival_rate = 0;
-
+	std::list<event *> GEL;
 
 	event first_event;
 
 	for(int i = 0; i < 100000; i++)
   {
 		arrival_time = current_time + ;
-		insertIntoGEL(first_event, );
+		insertIntoGEL(&GEL, first_event);
 		//get first event from GEL
 
   }
