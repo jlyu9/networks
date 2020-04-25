@@ -119,14 +119,17 @@ void processArrivalEvent(gel& list){
 	length++;
 
 	}else {
+		//NOTE TO DO: Update statistics which maintain the mean queue-length and the server busy time.
+
 		//If the queue is not full, i.e. if (length-1 < MAXBUFFER), put the packet into the queue. (
+		if(length-1 < MAXBUFFER){
 
-		//If the queue is full, then drop the packet; record a packet drop
+			//Since this is a new arrival event, we increment the length
+			length++;
+		} else{
+			//If the queue is full, then drop the packet; record a packet drop
 
-		//Since this is a new arrival event, we increment the length
-
-		//Update statistics which maintain the mean queue-length and the server busy time.
-
+		}
 	}
 
 	return;
