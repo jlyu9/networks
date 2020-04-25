@@ -59,8 +59,15 @@ void processDepartureEvent(gel& list){
 
 	if (length != 0){
 		//dequeue the first packet from the buffer
+
+
 		//Create a new departure event for a time which is the current time plus the time to transmit the packet
+		double new_event_time = current_time + ;
+
+		event new_departure_event;
+
 		//Insert the event at the right place in theGEL
+		list.push(new_departure_event);
 
 		length--;
 	}
