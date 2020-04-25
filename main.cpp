@@ -25,7 +25,7 @@ struct event{
 typedef struct event event;
 
 struct gel{
-	list<event> gel;
+	queue<event> gel;
 };
 
 typedef struct gel gel;
@@ -63,9 +63,10 @@ void processDepartureEvent(gel& list){
 	//set current time equal to the event time.
 	current_time = current_time + list.front().event_time; //update time
 
-	if (length != 0){
+	if (buffer.size() != 0){
 		//dequeue the first packet from the buffer
 
+		//NEED TO DO: Update statistics which maintain the mean queue-length and the server busy time.
 
 		//Create a new departure event for a time which is the current time plus the time to transmit the packet
 		double new_departure_event_time = current_time + ;
@@ -74,11 +75,13 @@ void processDepartureEvent(gel& list){
 		new_departure_event.type = 1;
 		new_departure_event.event_time = new_departure_event_time;
 
-		//Insert the event at the right place in theGEL
+		//Insert the event at the right place in the GEL
 		list.push(new_departure_event);
-
-		length--;
+		buffer.pop();
 	}
+
+	//else do nothing
+
 	return;
 }
 
@@ -99,8 +102,9 @@ int main(int argc, char *argv[]) {
 
 
 	//initialization
-	length, current_time, arrival_time, service_rate, arrival_rate = 0;
+	current_time, arrival_time, service_rate, arrival_rate = 0;
 	gel list;
+	//note: buffer.size() = length mentioned in project guidelines
 
 	event first_event;
 	first_event.type = 0;
@@ -122,7 +126,7 @@ int main(int argc, char *argv[]) {
 
   }
 
-	//need to output statistics
+	//NEED TO DO:  output statistics
 
 	return 0;
 }
