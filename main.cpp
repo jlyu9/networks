@@ -15,6 +15,8 @@ double arrival_rate;
 double arrival_time;
 double packet_drop;
 
+#define MAXBUFFER ; //not sure what to set this to?
+
 //data structures
 struct event{
 	double event_time;
@@ -31,12 +33,13 @@ struct gel{
 
 typedef struct gel gel;
 
-struct gel{
+struct buffer{
 	queue<event> buffer;
 };
 
 typedef struct buffer buffer;
 
+//helper functions
 double negative-exponentially-distributed-time (doublerate) {
 	 double u;
 	 u = drand48();
