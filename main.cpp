@@ -13,6 +13,7 @@ double time;
 double service_rate;
 double arrival_rate;
 double arrival_time;
+double packet_drop;
 
 //data structures
 struct event{
@@ -128,7 +129,7 @@ void processArrivalEvent(gel& list){
 			length++;
 		} else{
 			//If the queue is full, then drop the packet; record a packet drop
-
+			packet_drop++;
 		}
 	}
 
@@ -139,7 +140,7 @@ int main(int argc, char *argv[]) {
 
 
 	//initialization
-	length, current_time, arrival_time, service_rate, arrival_rate = 0;
+	length, current_time, arrival_time, service_rate, arrival_rate, packet_drop = 0;
 	gel list;
 
 	event first_event;
