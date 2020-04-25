@@ -50,6 +50,11 @@ void insertIntoGEL(event *created_event){
 
 void processEvent(gel& list){
 	//working on still
+	current_time = current_time + list.front().event_time; //update time
+
+	double next_arrival_time = current_time + ;
+	//^^not sure how to set the new arrival time
+
 	return;
 }
 
