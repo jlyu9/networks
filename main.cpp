@@ -63,7 +63,9 @@ void processDepartureEvent(gel& list){
 	//set current time equal to the event time.
 	current_time = current_time + list.front().event_time; //update time
 
-	if (buffer.size() != 0){
+	length = buffer.size();
+
+	if (length != 0){
 		//dequeue the first packet from the buffer
 
 		//NEED TO DO: Update statistics which maintain the mean queue-length and the server busy time.
@@ -93,7 +95,39 @@ void processArrivalEvent(gel& list){
 	//^^not sure how to set the new arrival time
 
 	//schedule next arrival event
+	double new_arrival_event_time = current_time + ;
+	event new_arrival_event;
+	new_arrival_event.type = 0;
+	new_arrival_event.event_time = new_arrival_event_time;
+
+	//Insert the event at the right place in the GEL
+	list.push(new_arrival_event);
+
 	//process arrival event
+	if(length == 0){ //packet  can  be  immediately  scheduled  for transmission
+
+	//Get the service time of the packet.
+	double new_departure_event_time = current_time + ;
+
+	//Create  a  departure  event  at  time  which  is  equal  to  the  current  time  plus the service time of the packet.
+	Event new_departure_event;
+	new_departure_event.type = 0;
+	new_departure_event.event_time = new_departure_event_time;
+
+	//Insert  the  event  into  the  GEL.
+	list.push(new_departure_event);
+	length++;
+
+	}else {
+		//If the queue is not full, i.e. if (length-1 < MAXBUFFER), put the packet into the queue. (
+
+		//If the queue is full, then drop the packet; record a packet drop
+
+		//Since this is a new arrival event, we increment the length
+
+		//Update statistics which maintain the mean queue-length and the server busy time.
+
+	}
 
 	return;
 }
@@ -102,9 +136,8 @@ int main(int argc, char *argv[]) {
 
 
 	//initialization
-	current_time, arrival_time, service_rate, arrival_rate = 0;
+	length, current_time, arrival_time, service_rate, arrival_rate = 0;
 	gel list;
-	//note: buffer.size() = length mentioned in project guidelines
 
 	event first_event;
 	first_event.type = 0;
