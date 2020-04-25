@@ -30,6 +30,12 @@ struct gel{
 
 typedef struct gel gel;
 
+struct gel{
+	queue<event> buffer;
+};
+
+typedef struct buffer buffer;
+
 double negative-exponentially-distributed-time (doublerate) {
 	 double u;
 	 u = drand48();
