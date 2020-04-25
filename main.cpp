@@ -20,7 +20,7 @@ double packet_drop;
 //data structures
 struct event{
 	double event_time;
-	double type;			//we can have 0 = arrival & 1 = departure
+	int type;			//we can have 0 = arrival & 1 = departure
 	struct event *next_event;
 	struct event *prev_event;
 };
