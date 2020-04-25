@@ -62,11 +62,7 @@ int main(int argc, char *argv[]) {
 
 
 	//initialization
-	length = 0;
-	current_time = 0;
-	arrival_time = 0;
-	service_rate = 0;
-	arrival_rate = 0;
+	length, current_time, arrival_time, service_rate, arrival_rate = 0;
 	gel list;
 
 	event first_event;
