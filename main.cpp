@@ -4,7 +4,6 @@
 #include <list>
 #include <queue>
 #include <unistd.h>
-#include <vector>
 #include <queue>
 
 
@@ -31,6 +30,12 @@ struct gel{
 
 typedef struct gel gel;
 
+double negative-exponentially-distributed-time (doublerate) {
+	 double u;
+	 u = drand48();
+	 return ((-1/rate)*log(1-u));
+}
+
 void insertIntoGEL(event *created_event){
 	//working on still
 	if (GEL->size() == 0){
@@ -48,12 +53,29 @@ void insertIntoGEL(event *created_event){
 	return;
 }
 
-void processEvent(gel& list){
-	//working on still
+void processDepartureEvent(gel& list){
+	//set current time equal to the event time.
+	current_time = current_time + list.front().event_time; //update time
+
+	if (length != 0){
+		//dequeue the first packet from the buffer
+		//Create a new departure event for a time which is the current time plus the time to transmit the packet
+		//Insert the event at the right place in theGEL
+
+		length--;
+	}
+	return;
+}
+
+void processArrivalEvent(gel& list){
+	//set current time equal to the event time.
 	current_time = current_time + list.front().event_time; //update time
 
 	double next_arrival_time = current_time + ;
 	//^^not sure how to set the new arrival time
+
+	//schedule next arrival event
+	//process arrival event
 
 	return;
 }
@@ -74,12 +96,14 @@ int main(int argc, char *argv[]) {
 	for(int i = 0; i < 100000; i++)
   {
 		if(list.front().type == 1){
-			processEvent(list);
+
+			processArrivalEvent(list);
+
 		} else {
 
+			processDepartureEvent(list);
 
 		}
-
 
   }
 
