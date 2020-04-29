@@ -30,7 +30,7 @@ class event{
 //TODO: heapify event's in gel
 priority_queue<> gel;
 
-queue<event> buffer;		
+queue<event> buffer;
 
 double nedt (double rate) { //inter-arrival time
 	 double u;
@@ -58,11 +58,12 @@ double nedt (double rate) { //inter-arrival time
 void processDepartureEvent(event e){
 //TODO: Update statistics which maintain the mean queue-length and the server busy time.
 	length--;
-
 	if (length > 0){
 		buffer.pop();
-		double new_departure_event_time = time + nedt(service_rate);
+    double service_time = nedt(service_rate);
+		double new_departure_event_time = time + service_time;
 
+    busy += service_time;
 		event new_departure_event;
 		new_departure_event.seT(1);
 		new_departure_event.set(new_departure_event_time);
@@ -80,7 +81,8 @@ void processArrivalEvent(event e){
 	new_arrival_event.set(next_arrival_time);
 	gel.push(new_arrival_event);
 	if(length == 0){ //packet  can  be  immediately  scheduled  for transmission
-	event new_departure_event;
+  busy += service_time;
+  event new_departure_event;
 	new_departure_event.seT(0);
 	new_departure_event.set(time+service_time);
 	gel.push(new_departure_event);
@@ -106,10 +108,12 @@ int main() {
 	first_event.seT(0);
 	first_event.set(time + nedt(arrival_rate));
 	gel.push(first_event);
-	
+
 	for(int i = 0; i < 100000; i++){
 		event e=gel.top();
+    double time_change = e.get() - time;
 		time = e.get();
+    area += length * time_change;
 		if(e.geT() == 0){
 			processArrivalEvent(e);
 		} else {
