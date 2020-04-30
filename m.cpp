@@ -1,4 +1,5 @@
 //Chelsy Sesma, Jie Lyu
+#include <stdlib.h>
 #include <iostream>
 #include <cmath>
 #include <queue>
