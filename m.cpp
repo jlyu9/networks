@@ -21,6 +21,9 @@ class event{
 		bool operator>(const event &rhs){
 			return this.event_time > rhs.event_time;
 		}
+		bool operator<(const event &rhs){
+			return this.event_time < rhs.event_time;
+		}
 		void set(double x){event_time=x;}
 		void seT(int x){type=x;}
 		int geT(){return type;}
@@ -30,8 +33,8 @@ class event{
 		int type;			//we can have 0 = arrival & 1 = departure
 };
 
-//TODO: heapify event's in gel
-priority_queue<> gel;
+// Priority queue storing events in ascending order of event_time
+priority_queue<event, vector<event>,less<vector<event>::value_type>> gel;
 
 queue<event> buffer;
 
@@ -41,22 +44,6 @@ double nedt (double rate) { //inter-arrival time
 	 return ((-1/rate)*log(1-u));
 }
 
-/*void insertIntoGEL(event *created_event){
-	//working on still
-	if (GEL->size() == 0){
-		GEL->push_front(created_event);
-		return;
-	} else {
-
-		std::list<event *>::Check check;
-		for (check = GEL->begin(), check != GEL->end(), check++){
-
-		}
-		return;
-	}
-
-	return;
-}*/
 
 void processDepartureEvent(event e){
 //TODO: Update statistics which maintain the mean queue-length and the server busy time.
