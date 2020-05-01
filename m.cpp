@@ -35,8 +35,7 @@ class event{
 		int type;			//we can have 0 = arrival & 1 = departure
 };
 
-// Priority queue storing events in ascending order of event_time
-priority_queue<event, vector<event>,less<vector<event>::value_type> > gel;
+priority_queue<event, vector<event>,greater<vector<event>::value_type> > gel;
 
 queue<event> buffer;
 
@@ -48,7 +47,6 @@ double nedt (double rate) { //inter-arrival time
 
 
 void processDepartureEvent(event e){
-//TODO: Update statistics which maintain the mean queue-length and the server busy time.
 	length--;
 	if (length > 0){
 		buffer.pop();
@@ -75,7 +73,7 @@ void processArrivalEvent(event e){
 	if(length == 0){ //packet  can  be  immediately  scheduled  for transmission
   busy += service_time;
   event new_departure_event;
-	new_departure_event.seT(0);
+	new_departure_event.seT(1);
 	new_departure_event.set(TIME+service_time);
 	gel.push(new_departure_event);
 	length++;
@@ -87,7 +85,6 @@ void processArrivalEvent(event e){
 			packet_drop++;
 		}
 	}
-//TODO: Update statistics which maintain the mean queue-length and the server busy time.
 	return;
 }
 
@@ -103,6 +100,7 @@ int main() {
 
 	for(int i = 0; i < 100000; i++){
 		event e=gel.top();
+		gel.pop();
     double time_change = e.get() - TIME;
 		TIME = e.get();
     area += length * time_change;
