@@ -18,14 +18,16 @@ int packet_drop;
 //data structures
 class event{
     public:
-	//TODO: overload operator >
-	void set(double x){event_time=x;}
-	void seT(int x){type=x;}
-	int geT(){return type;}
-	double get(){return event_time;}
+		bool operator>(const event &rhs){
+			return this.event_time > rhs.event_time;
+		}
+		void set(double x){event_time=x;}
+		void seT(int x){type=x;}
+		int geT(){return type;}
+		double get(){return event_time;}
     private:
-	double event_time;
-	int type;			//we can have 0 = arrival & 1 = departure
+		double event_time;
+		int type;			//we can have 0 = arrival & 1 = departure
 };
 
 //TODO: heapify event's in gel
