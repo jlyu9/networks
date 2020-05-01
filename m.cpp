@@ -1,28 +1,30 @@
-//Chelsy Sesma, Jie Lyu
+//Chelsy Sesma, Jie Lyu, Che-An Wu 
 #include <stdlib.h>
 #include <iostream>
 #include <cmath>
 #include <queue>
 
+#define MAXBUFFER 10 //not sure what to set this to?
+
+
 using namespace std;
 
 //global variables
 int length;
-double time;
+double TIME;
 double service_rate;
 double arrival_rate, busy, area;
 int packet_drop;
 
-#define MAXBUFFER 10; //not sure what to set this to?
 
 //data structures
 class event{
     public:
-		bool operator>(const event &rhs){
-			return this.event_time > rhs.event_time;
+		bool operator>(const event &rhs) const{
+			return this->event_time > rhs.event_time;
 		}
-		bool operator<(const event &rhs){
-			return this.event_time < rhs.event_time;
+		bool operator<(const event &rhs) const{
+			return this->event_time < rhs.event_time;
 		}
 		void set(double x){event_time=x;}
 		void seT(int x){type=x;}
@@ -34,7 +36,7 @@ class event{
 };
 
 // Priority queue storing events in ascending order of event_time
-priority_queue<event, vector<event>,less<vector<event>::value_type>> gel;
+priority_queue<event, vector<event>,less<vector<event>::value_type> > gel;
 
 queue<event> buffer;
 
@@ -51,7 +53,7 @@ void processDepartureEvent(event e){
 	if (length > 0){
 		buffer.pop();
     double service_time = nedt(service_rate);
-		double new_departure_event_time = time + service_time;
+		double new_departure_event_time = TIME + service_time;
 
     busy += service_time;
 		event new_departure_event;
@@ -64,7 +66,7 @@ void processDepartureEvent(event e){
 }
 
 void processArrivalEvent(event e){
-	double next_arrival_time = time + nedt(arrival_rate);
+	double next_arrival_time = TIME + nedt(arrival_rate);
 	double service_time = nedt(service_rate);
 	event new_arrival_event;
 	new_arrival_event.seT(0);
@@ -74,7 +76,7 @@ void processArrivalEvent(event e){
   busy += service_time;
   event new_departure_event;
 	new_departure_event.seT(0);
-	new_departure_event.set(time+service_time);
+	new_departure_event.set(TIME+service_time);
 	gel.push(new_departure_event);
 	length++;
 	}else {
@@ -91,18 +93,18 @@ void processArrivalEvent(event e){
 
 int main() {
 	length=0, packet_drop = 0;
-	time=0, busy=0;
+	TIME=0, busy=0;
 	cin>>service_rate>> arrival_rate;
 
 	event first_event;
 	first_event.seT(0);
-	first_event.set(time + nedt(arrival_rate));
+	first_event.set(TIME + nedt(arrival_rate));
 	gel.push(first_event);
 
 	for(int i = 0; i < 100000; i++){
 		event e=gel.top();
-    double time_change = e.get() - time;
-		time = e.get();
+    double time_change = e.get() - TIME;
+		TIME = e.get();
     area += length * time_change;
 		if(e.geT() == 0){
 			processArrivalEvent(e);
@@ -111,6 +113,6 @@ int main() {
 		}
   	}
 
-	cout<<"Utilization: "<<busy/time<<"\n Mean q length: "<<area/time<<"\n Packets dropped: "<<packet_drop<<"\n";
+	cout<<"Utilization: "<<busy/TIME<<"\n Mean q length: "<<area/TIME<<"\n Packets dropped: "<<packet_drop<<"\n";
 	return 0;
 }
